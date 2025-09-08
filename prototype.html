@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype ระบบแนะนำการลงทุน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav-bar button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .nav-bar button:hover {
+            background-color: #2980b9;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .card {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .portfolio-summary p {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+        .market-data ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .market-data li {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+        .recommendation-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .recommendation-list li {
+            background: #d4e6f1;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+        }
+        .risk-level {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .settings-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .settings-form select, .settings-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .settings-form button {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .settings-form button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>ระบบวิเคราะห์และแนะนำการลงทุนส่วนบุคคล</h1>
+        
+        <div class="nav-bar">
+            <button onclick="showPage('dashboard')">หน้าจอหลัก</button>
+            <button onclick="showPage('recommendations')">คำแนะนำ</button>
+            <button onclick="showPage('settings')">ตั้งค่า</button>
+        </div>
+
+        <div id="dashboard" class="page active">
+            <h2>ภาพรวมพอร์ตการลงทุน</h2>
+            <div class="card portfolio-summary">
+                <h3>พอร์ตปัจจุบัน</h3>
+                <p>มูลค่ารวม: <strong>฿250,000</strong></p>
+                <p>ผลตอบแทนรวม: <span style="color: green;">+฿15,000 (+6.4%)</span></p>
+            </div>
+            
+            <div class="card">
+                <h3>ข้อมูลล่าสุดจากตลาด</h3>
+                <div class="market-data">
+                    <ul>
+                        <li><span style="font-weight: bold;">SET Index:</span> 1,550.25 <span style="color: red;">(-5.35)</span></li>
+                        <li><span style="font-weight: bold;">ราคา Bitcoin:</span> $65,500 <span style="color: green;">(+$1,200)</span></li>
+                        <li><span style="font-weight: bold;">ราคาทองคำ:</span> $1,950/oz <span style="color: green;">(+$15)</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>คำแนะนำเด่นสำหรับคุณ</h3>
+                <div class="recommendation-card">
+                    <h4>หุ้น A</h4>
+                    <p><strong>เหตุผล:</strong> ผลประกอบการไตรมาสล่าสุดเติบโตสูงกว่าคาดการณ์</p>
+                    <p><strong>ระดับความเสี่ยง:</strong> <span class="risk-level">สูง</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="recommendations" class="page">
+            <h2>คำแนะนำการลงทุน</h2>
+            <ul class="recommendation-list">
+                <li>
+                    <h3>กองทุนรวมหุ้น B</h3>
+                    <p><strong>เหตุผล:</strong> AI วิเคราะห์ว่ากลุ่มอุตสาหกรรมเทคโนโลยีมีแนวโน้มเติบโตดีในระยะยาว</p>
+                    <p><strong>ระดับความเสี่ยง:</strong> <span class="risk-level" style="color: orange;">ปานกลาง</span></p>
+                </li>
+                <li>
+                    <h3>พันธบัตรรัฐบาล C</h3>
+                    <p><strong>เหตุผล:</strong> เพื่อเพิ่มเสถียรภาพให้กับพอร์ตการลงทุนในภาวะเศรษฐกิจผันผวน</p>
+                    <p><strong>ระดับความเสี่ยง:</strong> <span class="risk-level" style="color: green;">ต่ำ</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <div id="settings" class="page">
+            <h2>ตั้งค่าโปรไฟล์</h2>
+            <div class="settings-form">
+                <label for="risk-tolerance">ระดับความเสี่ยงที่ยอมรับได้:</label>
+                <select id="risk-tolerance">
+                    <option value="low">ต่ำ</option>
+                    <option value="medium">ปานกลาง</option>
+                    <option value="high">สูง</option>
+                </select>
+
+                <label for="investment-type">ประเภทการลงทุนที่สนใจ:</label>
+                <select id="investment-type">
+                    <option value="stocks">หุ้น</option>
+                    <option value="funds">กองทุนรวม</option>
+                    <option value="crypto">คริปโตเคอเรนซี</option>
+                    <option value="bonds">พันธบัตร</option>
+                </select>
+
+                <button onclick="saveSettings()">บันทึกการตั้งค่า</button>
+                <p id="settings-message" style="color: green; font-weight: bold;"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        function saveSettings() {
+            const riskLevel = document.getElementById('risk-tolerance').value;
+            const investmentType = document.getElementById('investment-type').value;
+            const messageElement = document.getElementById('settings-message');
+
+            messageElement.textContent = `บันทึกการตั้งค่าเรียบร้อย: ระดับความเสี่ยง '${riskLevel}', ประเภท '${investmentType}'`;
+        }
+    </script>
+
+</body>
+</html>
